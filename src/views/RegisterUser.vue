@@ -30,6 +30,7 @@
     </v-form>
 </template>
 <script>
+import { registerCustomer } from '../services/customer';
 export default {
     data() {
         return {
@@ -58,6 +59,23 @@ export default {
                 phone: this.phone,
                 password: this.password,
             });
+
+            const customerData = {
+                first_name: this.firstName,
+                last_name: this.lastName,
+                email: this.email,
+                address: this.address,
+                phone: this.phone,
+                password: this.password,
+            };
+
+            registerCustomer(customerData)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
         },
     },
 };
