@@ -1,5 +1,6 @@
 <template>
     <v-form v-model="valid">
+        {{ api }}
         <v-container>
             <v-card>
                 <v-card-text>
@@ -31,9 +32,11 @@
 </template>
 <script>
 import { registerCustomer } from '../services/customer';
+
 export default {
     data() {
         return {
+            api: process.env.VUE_APP_BACK_END_URL,
             valid: false,
             firstName: '',
             firstNameRules: [(v) => !!v || 'Name is required'],
