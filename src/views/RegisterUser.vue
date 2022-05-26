@@ -1,15 +1,31 @@
 <template>
     <v-form v-model="valid">
         <v-container>
-            <v-row>
-                <v-col cols="12" md="4">
-                    <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
-                </v-col>
-
-                <v-col cols="12" md="4">
+            <v-card>
+                <v-card-text>
+                    <v-text-field
+                        v-model="firstName"
+                        :rules="firstNameRules"
+                        label="First name"
+                        required
+                    ></v-text-field>
+                    <v-text-field v-model="lastName" :rules="lastNameRules" label="Last name" required></v-text-field>
+                    <v-text-field v-model="address" :rules="addressRules" label="Address" required></v-text-field>
+                    <v-text-field v-model="phone" :rules="phoneRules" label="Phone" required></v-text-field>
                     <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-                </v-col>
-            </v-row>
+                    <v-text-field
+                        type="password"
+                        v-model="password"
+                        :rules="passwordRules"
+                        label="Password"
+                        required
+                    ></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn :disabled="!valid" color="success" class="float-left" @click="submit"> Submit </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-container>
     </v-form>
 </template>
@@ -18,11 +34,31 @@ export default {
     data() {
         return {
             valid: false,
-            name: '',
-            nameRules: [(v) => !!v || 'Name is required'],
+            firstName: '',
+            firstNameRules: [(v) => !!v || 'Name is required'],
+            lastName: '',
+            lastNameRules: [(v) => !!v || 'Name is required'],
             email: '',
             emailRules: [(v) => !!v || 'E-mail is required', (v) => /.+@.+/.test(v) || 'E-mail must be valid'],
+            address: '',
+            addressRules: [(v) => !!v || 'Address is required'],
+            phone: '',
+            phoneRules: [(v) => !!v || 'Phone is required'],
+            password: '',
+            passwordRules: [(v) => !!v || 'Password is required'],
         };
+    },
+    methods: {
+        submit() {
+            console.table({
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email,
+                address: this.address,
+                phone: this.phone,
+                password: this.password,
+            });
+        },
     },
 };
 </script>
