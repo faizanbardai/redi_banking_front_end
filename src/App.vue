@@ -1,15 +1,16 @@
 <template>
     <v-app>
-        <RegisterUser></RegisterUser>
+        <router-link to="/login">Go to Login</router-link>
+        <router-link to="/register">Go to Register</router-link>
+        <router-view></router-view>
     </v-app>
 </template>
 
 <script>
-import RegisterUser from './views/RegisterUser.vue';
 export default {
     name: 'App',
 
-    components: { RegisterUser },
+    components: {},
 
     data: () => ({
         //

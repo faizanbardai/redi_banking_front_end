@@ -77,7 +77,9 @@ export default {
             this.loading = true;
 
             registerCustomer(customerData)
-                .then()
+                .then(() => {
+                    this.$router.push('/login');
+                })
                 .catch((error) => {
                     this.error = error.response.data.message;
                 })
