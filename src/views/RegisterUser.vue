@@ -1,8 +1,7 @@
 <template>
     <v-form v-model="valid">
-        {{ api }}
         <v-container>
-            <v-card>
+            <v-card :loading="loading">
                 <v-card-text>
                     <v-text-field
                         v-model="firstName"
@@ -21,6 +20,7 @@
                         label="Password"
                         required
                     ></v-text-field>
+                    <v-alert v-if="error" dense type="error"> {{ error }} </v-alert>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -36,8 +36,10 @@ import { registerCustomer } from '../services/customer';
 export default {
     data() {
         return {
-            api: process.env.VUE_APP_BACK_END_URL,
             valid: false,
+            error: '',
+            loading: false,
+            message: '',
             firstName: '',
             firstNameRules: [(v) => !!v || 'Name is required'],
             lastName: '',
@@ -72,13 +74,14 @@ export default {
                 password: this.password,
             };
 
+            this.loading = true;
+
             registerCustomer(customerData)
-                .then((res) => {
-                    console.log(res);
+                .then()
+                .catch((error) => {
+                    this.error = error.response.data.message;
                 })
-                .catch((err) => {
-                    console.error(err);
-                });
+                .finally(() => (this.loading = false));
         },
     },
 };
