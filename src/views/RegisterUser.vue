@@ -39,7 +39,6 @@ export default {
             valid: false,
             error: '',
             loading: false,
-            message: '',
             firstName: '',
             firstNameRules: [(v) => !!v || 'Name is required'],
             lastName: '',
