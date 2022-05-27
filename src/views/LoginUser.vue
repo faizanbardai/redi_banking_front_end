@@ -23,10 +23,12 @@
 </template>
 <script>
 import { loginCustomer } from '@/services/customer';
+import { store } from '../store';
 
 export default {
     data() {
         return {
+            store,
             valid: false,
             error: '',
             loading: false,
@@ -38,11 +40,6 @@ export default {
     },
     methods: {
         submit() {
-            console.table({
-                email: this.email,
-                password: this.password,
-            });
-
             const customerData = {
                 email: this.email,
                 password: this.password,
@@ -51,7 +48,8 @@ export default {
             this.loading = true;
 
             loginCustomer(customerData)
-                .then(() => {
+                .then((res) => {
+                    this.store.setUser(res.data.customer);
                     this.$router.push('/dashboard');
                 })
                 .catch((error) => {

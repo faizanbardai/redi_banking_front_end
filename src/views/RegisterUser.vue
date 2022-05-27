@@ -55,15 +55,6 @@ export default {
     },
     methods: {
         submit() {
-            console.table({
-                firstName: this.firstName,
-                lastName: this.lastName,
-                email: this.email,
-                address: this.address,
-                phone: this.phone,
-                password: this.password,
-            });
-
             const customerData = {
                 first_name: this.firstName,
                 last_name: this.lastName,
