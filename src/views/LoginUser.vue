@@ -23,12 +23,10 @@
 </template>
 <script>
 import { loginCustomer } from '@/services/customer';
-import { store } from '../store';
 
 export default {
     data() {
         return {
-            store,
             valid: false,
             error: '',
             loading: false,
@@ -49,7 +47,9 @@ export default {
 
             loginCustomer(customerData)
                 .then((res) => {
-                    this.store.setUser(res.data.customer);
+                    const { customer, token } = res.data;
+                    localStorage.setItem('token', token);
+                    this.$store.commit('setUser', customer);
                     this.$router.push('/dashboard');
                 })
                 .catch((error) => {

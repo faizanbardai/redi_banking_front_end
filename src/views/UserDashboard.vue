@@ -1,13 +1,11 @@
 <template>
-    <div>Welcome {{ store.user.firstName }} {{ store.user.lastName }}</div>
+    <div>Welcome {{ $store.state.user.firstName }} {{ $store.state.user.lastName }}</div>
 </template>
 <script>
-import { store } from '../store';
 export default {
     data() {
         return {
             user: {},
-            store,
         };
     },
 };

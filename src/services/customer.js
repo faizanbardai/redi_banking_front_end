@@ -5,5 +5,8 @@ const registerCustomer = async (customer) => await axios.post(api + 'register', 
 
 const loginCustomer = async (customer) => await axios.post(api + 'login', customer);
 
+const getCustomerByToken = async (token) => await axios.get(api + 'data', { headers: { token: token } });
+
 exports.registerCustomer = registerCustomer;
 exports.loginCustomer = loginCustomer;
+exports.getCustomerByToken = getCustomerByToken;

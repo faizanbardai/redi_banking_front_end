@@ -67,8 +67,11 @@ export default {
             this.loading = true;
 
             registerCustomer(customerData)
-                .then(() => {
-                    this.$router.push('/login');
+                .then((res) => {
+                    const { token, customer } = res.data;
+                    localStorage.setItem('token', token);
+                    this.$store.commit('setUser', customer);
+                    this.$router.push('/dashboard');
                 })
                 .catch((error) => {
                     this.error = error.response.data.message;
