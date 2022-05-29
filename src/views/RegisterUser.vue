@@ -1,8 +1,8 @@
 <template>
     <v-form v-model="valid">
         <v-container>
-            <v-card :loading="loading">
-                <v-card-text>
+            <v-card :loading="loading" elevation="0">
+                <v-card-text class="py-0">
                     <v-text-field
                         v-model="firstName"
                         :rules="firstNameRules"
@@ -24,7 +24,9 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!valid" color="success" class="float-left" @click="submit"> Submit </v-btn>
+                    <v-btn :disabled="!valid" color="success" class="float-left" @click="submit">
+                        Create Account
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-container>

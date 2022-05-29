@@ -1,8 +1,7 @@
 <template>
     <v-app>
-        <router-link to="/login">Go to Login</router-link>
-        <router-link to="/register">Go to Register</router-link>
-        <router-view></router-view>
+        <div class="pb-16"><router-view></router-view></div>
+        <v-footer fixed>&copy; 2022 - just kidding... feel free to copy!</v-footer>
     </v-app>
 </template>
 
@@ -29,10 +28,10 @@ export default {
                 })
                 .catch(() => {
                     localStorage.removeItem('token');
-                    this.$router.push('/login');
+                    if (this.$route.name !== 'home') this.$router.push('/');
                 });
         } else {
-            this.$router.push('/login');
+            if (this.$route.name !== 'home') this.$router.push('/');
         }
     },
 };

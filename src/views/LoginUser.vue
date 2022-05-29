@@ -1,8 +1,8 @@
 <template>
     <v-form v-model="valid">
         <v-container>
-            <v-card :loading="loading">
-                <v-card-text>
+            <v-card :loading="loading" elevation="0">
+                <v-card-text class="py-0">
                     <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
                     <v-text-field
                         type="password"
@@ -15,7 +15,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!valid" color="success" class="float-left" @click="submit"> Submit </v-btn>
+                    <v-btn :disabled="!valid" color="success" class="float-left" @click="submit"> Login </v-btn>
                 </v-card-actions>
             </v-card>
         </v-container>
