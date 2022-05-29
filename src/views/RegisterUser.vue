@@ -20,7 +20,7 @@
                         label="Password"
                         required
                     ></v-text-field>
-                    <v-alert v-if="error" dense type="error"> {{ error }} </v-alert>
+                    <v-alert v-if="error" dense type="error" dismissible> {{ error }} </v-alert>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>

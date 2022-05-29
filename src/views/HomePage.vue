@@ -34,8 +34,8 @@
             </v-card-text>
             <v-card-actions class="py-0">
                 <v-spacer></v-spacer>
-                <v-btn rounded @click="form = 'login'"> Login </v-btn>
-                <v-btn rounded @click="form = 'register'"> Create account with us </v-btn>
+                <v-btn rounded v-if="form === 'register'" @click="form = 'login'"> Already have an account </v-btn>
+                <v-btn rounded v-if="form === 'login'" @click="form = 'register'"> Create account with us </v-btn>
             </v-card-actions>
         </v-card>
         <LoginUser v-if="form === 'login'"></LoginUser>

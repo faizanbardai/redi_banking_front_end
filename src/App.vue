@@ -24,7 +24,7 @@ export default {
                 .then((res) => {
                     const { customer } = res.data;
                     this.$store.commit('setUser', customer);
-                    this.$router.push('/dashboard');
+                    if (this.$route.name !== 'dashboard') this.$router.push('/dashboard');
                 })
                 .catch(() => {
                     localStorage.removeItem('token');
