@@ -17,7 +17,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                    <v-form v-model="valid">
+                    <v-form ref="form" v-model="valid">
                         <v-radio-group v-model="action" row mandatory>
                             <v-radio
                                 v-for="action in actions"
@@ -36,8 +36,10 @@
                         ></v-text-field>
                     </v-form>
                     {{ bankAccount.number }}
-                    <v-alert v-if="error" dense type="error" dismissible> {{ error }} </v-alert>
-                    <v-alert v-if="message" dense type="info" dismissible> {{ message }} </v-alert>
+                    <v-alert v-model="showError" v-if="error" dense type="error" dismissible> {{ error }} </v-alert>
+                    <v-alert v-model="showMessage" v-if="message" dense type="info" dismissible>
+                        {{ message }}
+                    </v-alert>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn text color="secondary" @click="show = !show"> Close </v-btn>
@@ -70,7 +72,9 @@ export default {
             amount: null,
             amountRules: [(v) => !!v || 'Amount is required'],
             error: '',
+            showError: false,
             message: '',
+            showMessage: false,
         };
     },
     methods: {
@@ -83,17 +87,27 @@ export default {
                     .then((res) => {
                         const { bankAccount, message } = res.data;
                         this.message = message;
+                        this.showMessage = true;
+                        this.$refs.form.reset();
                         this.$emit('bankAccountUpdated', bankAccount);
                     })
-                    .catch((error) => (this.error = error.response.data.message));
+                    .catch((error) => {
+                        this.error = error.response.data.message;
+                        this.showError = true;
+                    });
             } else {
                 withdraw(token, { amount: this.amount, name, type, number })
                     .then((res) => {
                         const { bankAccount, message } = res.data;
                         this.message = message;
+                        this.showMessage = true;
+                        this.$refs.form.reset();
                         this.$emit('bankAccountUpdated', bankAccount);
                     })
-                    .catch((error) => (this.error = error.response.data.message));
+                    .catch((error) => {
+                        this.error = error.response.data.message;
+                        this.showError = true;
+                    });
             }
         },
     },

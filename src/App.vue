@@ -1,7 +1,7 @@
 <template>
     <v-app>
-        <div class="pb-16"><router-view></router-view></div>
-        <v-footer fixed>&copy; 2022 - just kidding... feel free to copy!</v-footer>
+        <div><router-view></router-view></div>
+        <!-- <v-footer fixed>&copy; 2022 - just kidding... feel free to copy!</v-footer> -->
     </v-app>
 </template>
 

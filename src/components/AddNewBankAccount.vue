@@ -68,6 +68,7 @@ export default {
                     this.error = err?.response?.data?.message;
                 })
                 .finally(() => {
+                    this.name = '';
                     this.reveal = false;
                 });
         },
