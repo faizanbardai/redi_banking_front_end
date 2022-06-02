@@ -43,8 +43,8 @@
     </div>
 </template>
 <script>
-import LoginUser from './LoginUser.vue';
-import RegisterUser from './RegisterUser.vue';
+import LoginUser from '../components/LoginUser.vue';
+import RegisterUser from '../components/RegisterUser.vue';
 export default {
     data() {
         return {

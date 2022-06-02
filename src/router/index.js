@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from '../views/HomePage.vue';
-import RegisterUser from '../views/RegisterUser.vue';
-import LoginUser from '../views/LoginUser.vue';
+import RegisterUser from '../components/RegisterUser.vue';
+import LoginUser from '../components/LoginUser.vue';
 import UserDashboard from '../views/UserDashboard.vue';
+import AdminDashboard from '../views/AdminDashboard.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: UserDashboard,
+    },
+    {
+        path: '/admin-dashboard',
+        name: 'adminDashboard',
+        component: AdminDashboard,
     },
     // {
     //     path: '/about',
